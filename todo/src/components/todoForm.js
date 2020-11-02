@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react'
-import {addToList, reducer, initialState} from './../reducers/reducer'
+import {addToList, reducer, initialState, toggleCompleted} from './../reducers/reducer'
 import ToDoList from './todoList'
 
 
@@ -7,9 +7,6 @@ const TodoForm = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
   const [item, setItem] = useState('')
-
-  console.log('state',state);
-
   
   const handleChange = e => {
     setItem(e.target.value)
@@ -22,6 +19,10 @@ const TodoForm = () => {
       completed: false,
       id: Date.now()
     }))
+  }
+
+  const handleTaskClick = (id) => {
+    dispatch(toggleCompleted(id))
   }
   
   console.log('list',state.list);
@@ -43,7 +44,7 @@ const TodoForm = () => {
         // onClick={jkldsfj}
       >
         Clear Completed</button>
-      <ToDoList todoList={state.list}/>
+      <ToDoList todoList={state.list} handleToggleTask={handleTaskClick}/>
     </div>
   )
 }

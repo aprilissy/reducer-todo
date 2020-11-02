@@ -2,9 +2,6 @@ import React from 'react'
 import Todo from './todo'
 
 const ToDoList = props => {
-console.log('List props',props);
-
-
 
   return (
    <div>
