@@ -19,6 +19,11 @@ export const toggleCompleted = id => {
   return({type:TOGGLE_COMPLETED, payload:id})
 }
 
+const REMOVE_FROM_LIST = 'REMOVE_FROM_LIST'
+export const removeFromList = id => {
+  return({type:REMOVE_FROM_LIST, payload:id})
+}
+
 
 export const reducer = (state, action) => {
   console.log(state, action)
@@ -40,7 +45,9 @@ export const reducer = (state, action) => {
       })
     })
 
-      
+    case(REMOVE_FROM_LIST):
+      return({...state, list:state.list.filter((task) => (!task.completed))
+    })
 
     default:
       return(state)

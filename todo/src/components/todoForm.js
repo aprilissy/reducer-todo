@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react'
-import {addToList, reducer, initialState, toggleCompleted} from './../reducers/reducer'
+import {addToList, reducer, initialState, toggleCompleted, removeFromList} from './../reducers/reducer'
 import ToDoList from './todoList'
 
 
@@ -25,7 +25,9 @@ const TodoForm = () => {
     dispatch(toggleCompleted(id))
   }
   
-  console.log('list',state.list);
+  const removeItem = () => {
+    dispatch(removeFromList())
+  }
   
 
   return(
@@ -41,7 +43,7 @@ const TodoForm = () => {
         <button onClick={addItem}>Add Todo</button>
       </form>
       <button
-        // onClick={jkldsfj}
+        onClick={removeItem}
       >
         Clear Completed</button>
       <ToDoList todoList={state.list} handleToggleTask={handleTaskClick}/>
